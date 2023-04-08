@@ -4,7 +4,7 @@ import { Badge } from 'primereact/badge';
 import { Card } from 'primereact/card';
 
 function AppHeader() {
-    return (<div className="card flex justify-content-center">
+    return (<div style={{alignContent: 'center'}}>
         <Card>
             <Badge value="Tracker" size="xlarge" severity="info"></Badge>
         </Card>

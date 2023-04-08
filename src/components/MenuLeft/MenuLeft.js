@@ -1,33 +1,40 @@
 import React, {useState} from 'react'
 import { Dock } from 'primereact/dock'
+import { MegaMenu } from 'primereact/megamenu';
 import './MenuLeft.css'
+import {useNavigate} from 'react-router-dom';
 
 function MenuLeft() {
+    const navigate = useNavigate();
     const items = [
         {
-            label: 'New Tracker',
-            icon: () => <img alt="New" src="../../../icons-tracker/new-tracker.png" width="100%" />,
+            label: 'List Trackers', icon: 'pi pi-fw pi-list',
+            command: () => {
+                navigate('/list/tracker')
+            }
         },
         {
-            label: 'List Tracker',
-            icon: () => <img alt="List" src="../../../icons-tracker/list-tracker.png" width="100%" />,
+            label: 'New Tracker', icon: 'pi pi-fw pi-plus',
+            command: () => {
+                navigate('/new/tracker')
+            }        
         },
         {
-            label: 'Search Tracker',
-            icon: () => <img alt="Search" src="../../../icons-tracker/search-tracker.png" width="100%" />,
-        }
-    ]
+            label: 'Search Trackers', icon: 'pi pi-fw pi-search',
+            command: () => {
+                navigate('/search/tracker')
+
+            }
+            
+        },
+        
+    ];
 
 
     return (
-        <div className="dock-demo">
-            <div className="dock-window" /*style={{ backgroundImage: 'url(https://primefaces.org/cdn/primereact/images/dock/window.jpg)' }}*/>
-                <Dock model={items} position="left" />
-            </div>
-        </div> 
-
-
-
+        <div className="card">
+            <MegaMenu model={items} breakpoint="960px" orientation="vertical" />
+        </div>
     )
 }
 
