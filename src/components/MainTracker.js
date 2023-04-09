@@ -23,7 +23,7 @@ export default function Tracker() {
         campaignName: '',
         createdBy: 'System',
         restricted: false,
-        vendor: ''
+        vendor: null
     }
 
     const vendors = [
@@ -102,9 +102,23 @@ export default function Tracker() {
         setTracker(_tracker);
     }
 
+    const marshallTrackerData = (trackerDataUI) => {
+        let trackerDataReturn = { ...trackerDataUI}
+        trackerDataReturn.vendor = trackerDataUI.vendor.code
+        return trackerDataReturn
+    }
+
+    const unMarshallTrackerData = (trackerDataResponse) => {
+        let trackerDataReturn = { ...trackerDataResponse}
+        trackerDataReturn.vendor = {}
+        trackerDataReturn.vendor.name = trackerDataResponse.vendor
+        trackerDataReturn.vendor.code = trackerDataResponse.vendor
+        return trackerDataReturn
+    }
+
     const saveProduct = () => {
         setSubmitted(true);
-        TrackerService.saveTrackerMeta(tracker, (responseTrackerData) => {
+        TrackerService.saveTrackerMeta(marshallTrackerData(tracker), (responseTrackerData) => {
             let _trackerMeta = [...trackerMeta];
             //let _tracker = { ...tracker };
             if(responseTrackerData.id) {
@@ -126,6 +140,14 @@ export default function Tracker() {
             <Button label="Save" icon="pi pi-check" text onClick={saveProduct} />
         </>
     )
+
+    const trackerSelected = (e) => {        
+        console.log(e.data)
+        setTracker(unMarshallTrackerData(e.data))
+        setSubmitted(false)
+        setTrackerDialog(true)
+        
+    }
 
     return (
         <div className="grid crud-demo">
@@ -149,7 +171,8 @@ export default function Tracker() {
                         // globalFilter={globalFilter}
                         emptyMessage="No Trackers found."
                         header={header}
-                        responsiveLayout="scroll">
+                        responsiveLayout="scroll"
+                        onRowClick={trackerSelected}>
 
                         <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
                         <Column field="campaignName" header="Campaign" sortable headerStyle={{ minWidth: '15rem' }}></Column>
