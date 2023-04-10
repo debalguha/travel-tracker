@@ -8,7 +8,8 @@ import PrimeReact from 'primereact/api'
 //import "primereact/resources/themes/viva-dark/theme.css";     
 //import 'primereact/resources/themes/saga-blue/theme.css'
 //import 'primereact/resources/themes/arya-green/theme.css'
-import 'primereact/resources/themes/mdc-light-indigo/theme.css'
+//import 'primereact/resources/themes/mdc-light-indigo/theme.css'
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
 //core
 import "primereact/resources/primereact.min.css"
 //icons
