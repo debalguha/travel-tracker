@@ -17,16 +17,20 @@ import "primeicons/primeicons.css"
 import "primeflex/primeflex.css"
 
 import { useRoutes } from "react-router-dom"
-import MainProduct from './components/MainProduct'
+//import MainProduct from './components/MainProduct'
 import MainTracker from './components/MainTracker'
+import TrackerDetail from './components/TrackerDetail'
 
 
 function App() {
 
-  const routes = useRoutes([    
-    { path: "/list/tracker", element: <ListTracker /> },
-    { path: "/new/tracker", element: <ListTracker /> },
-    { path: "/search/tracker", element: <ListTracker /> }
+  const routes = useRoutes([   
+    { path: "/", element: <MainTracker /> },
+    { path: "/:id", element: <TrackerDetail /> }
+    // { path: "/list/tracker", element: <ListTracker /> },
+    // { path: "/list/tracker", element: <ListTracker /> },
+    // { path: "/new/tracker", element: <ListTracker /> },
+    // { path: "/search/tracker", element: <ListTracker /> }
   ]);
 
   return (<div className='App'>
@@ -39,7 +43,8 @@ function App() {
       </div>      
     </div> */}
    {/* <MainProduct /> */}
-   <MainTracker />
+   {routes}
+   {/* <MainTracker /> */}
 </div>);
 }
 

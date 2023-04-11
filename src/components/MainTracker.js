@@ -28,6 +28,8 @@ export default function Tracker() {
         { name: 'Heroku', code: 'Heroku' }
     ]
 
+    const navigate = useNavigate();
+
     const [tracker, setTracker] = useState(emptyTrackerCampaign)
     const [trackerMeta, setTrackerMeta] = useState([]);
     const [trackerDialog, setTrackerDialog] = useState(false);
@@ -139,8 +141,9 @@ export default function Tracker() {
     const trackerSelected = (e) => {        
         console.log(e.data)
         setTracker(unMarshallTrackerData(e.data))
-        setSubmitted(false)
-        setTrackerDialog(true)
+        // setSubmitted(false)
+        // setTrackerDialog(true)
+        navigate('/'+e.data.campaignName)
         
     }
 
